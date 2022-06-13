@@ -1,0 +1,82 @@
+﻿@model IEnumerable<MyEvernote.Entites.Note>
+
+<div class="row m-4 d-flex justify-content-center">
+    <div class="col-md-10 col-md-offset-1">
+        <h3 class="card-title mb-3 d-flex justify-content-center">Not Ekleme</h3>
+        <p>
+            <a href="/Note/Create" class="btn btn-primary">
+                <span class="bi-file-plus"> Create</span>
+            </a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsDraft)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LikeCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedUsername)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsDraft)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LikeCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedUsername)
+                    </td>
+                    <td>
+                        @Bootstrap.LinkButton("/Note/Edit/" + item.Id, "warning", "btn-xs", "Edit", "pencil-square", string.Empty)
+
+                        @Bootstrap.LinkButton("/Note/Details/" + item.Id, "info", "btn-xs", "Detail", "search", string.Empty)
+
+                        @Bootstrap.LinkButton("/Note/Delete/" + item.Id, "danger", "btn-xs", "Delete", "trash3-fill", string.Empty)
+
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+@Bootstrap.ModalPopup("modal_comment", title: "Yorumlar")
+<script src="~/comment.js"></script>
+<script src="~/Scripts/like.js"></script>

@@ -1,0 +1,33 @@
+﻿@using MyEvernote.Entites
+@model EvernoteUser
+
+@{
+    ViewBag.Title = "Profil Bilgileri";
+}
+<link href="~/validationSummaryCss.css" rel="stylesheet" />
+<link href="~/profileCss.css" rel="stylesheet" />
+
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+    <div class="card p-4">
+        <div class=" image d-flex flex-column justify-content-center align-items-center">
+            <img src="~/Images/@Model.ProfileImageFileName" class="rounded-circle" height="200" width="200" />
+            <span class="name mt-3">@(Model.Name + " " + Model.Surname)</span> <span class="idd"></span>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                <span class="idd1">@Html.DisplayNameFor(model => model.Username) : @Model.Username </span>
+            </div>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                <span class="idd1">@Html.DisplayNameFor(model => model.Email) : @Model.Email </span>
+            </div>
+            <div class=" d-flex mt-2">
+                <a href="@Url.Action("EditProfile")" class="btn btn-primary ">Edit Profile</a>
+            </div>
+            <div class=" d-flex mt-2">
+                <a href="@Url.Action("DeleteProfile")" onclick="return confirm('Hesabınızı silmek istediğinize emin misiniz ?');" 
+                   class="btn btn-danger ">Delete Profile</a>
+            </div>
+            <div class=" px-2 rounded mt-4 date ">
+                <span class="join">Joined @Model.CreatedOn</span>
+            </div>
+        </div>
+    </div>
+</div>

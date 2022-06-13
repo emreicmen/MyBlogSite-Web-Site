@@ -1,0 +1,79 @@
+﻿@using MyEvernote.Entites
+@model EvernoteUser
+
+@{
+    ViewBag.Title = "Profili Düzenle";
+}
+<link href="~/validationSummaryCss.css" rel="stylesheet" />
+<div class="container">
+    <div class="row mt-5">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+
+    <div class="row">
+        @using (Html.BeginForm("EditProfile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="container rounded bg-white mt-5 mb-5">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                            <img src="~/Images/@Model.ProfileImageFileName" class="rounded-circle" width="200" height="200">
+                            @Html.HiddenFor(model => model.ProfileImageFileName)
+                        </div>
+                        <br /><br />
+                        <input type="file" name="ProfileImage" id="ProfileImage" class="form-control" />
+                        <span class="glyphicon glyphicon-info-sign">&nbsp;</span>
+                        <span><i>Lütfen jpg,jpeg yada png formatı kullanınız</i></span>
+                    </div>
+                    <div class="col-md-5">
+                        @Html.ValidationSummary(false)
+                        <div class="p-3 py-5">
+                            @Html.HiddenFor(model => model.Id)
+                            <div class="row mt-2">
+
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="submit" value="Kaydet" class="btn btn-success" />
+                                @Html.ActionLink("İptal", "ShowProfile", "Home", null, new { @class = "btn btn-primary" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

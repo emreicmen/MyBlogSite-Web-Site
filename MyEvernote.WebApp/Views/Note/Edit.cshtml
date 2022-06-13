@@ -1,0 +1,82 @@
+﻿@model MyEvernote.Entites.Note
+
+<link href="~/categoryPagesCss.css" rel="stylesheet" />
+<link href="~/validationSummaryCss.css" rel="stylesheet" />
+
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+    <div class="card px-1 py-4">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+        <div class="card-body">
+            <h4 class="card-title mb-3 d-flex justify-content-center">Not Bilgileri Düzenleme</h4>
+            @Html.ValidationSummary(false)
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-6" })
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-6 mt-2" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextAreaFor(model => model.Text, 5, 30, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NotePicture, htmlAttributes: new { @class = "control-label col-md-4 mt-1" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextAreaFor(model => model.NotePicture, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12 d-flex justify-content-center m-3">
+                    @Html.LabelFor(model => model.IsDraft, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6 d-flex justify-content-center">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsDraft)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LikeCount, htmlAttributes: new { @class = "control-label col-md-6 mt-2" })
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.LikeCount, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CategoryId, "Kategori", htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                @Bootstrap.Button("success", string.Empty, "submit", "check-all", " Save")
+                @Bootstrap.LinkButton("/Note/Index/", "primary", string.Empty, string.Empty, "arrow-left-circle", "Back to List")
+            </div>
+
+        </div>
+        }
+    </div>
+</div>

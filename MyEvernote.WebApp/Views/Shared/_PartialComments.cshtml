@@ -1,0 +1,60 @@
+﻿@using MyEvernote.Entites
+@using MyEvernote.WebApp.Models
+@model List<Comment>
+@{
+    EvernoteUser user = CurrentSession.User;
+}
+@foreach (Comment item in Model)
+{
+    <hr />
+    <div class="media m-2">
+
+        <div class="media-left media-top">
+            <div class="media-object">
+                <span class="bi bi-chat-square-dots-fill"></span>
+            </div>
+        </div>
+
+        <div class="media-body">
+            <div>
+                <div class="col-md-10" id="comment_text_@item.Id" contenteditable="false">
+                    @item.Text
+                </div>
+                @if (user != null && user.Id == item.Owner.Id)
+                {
+                    <span class="col-md-2 d-flex text-right">
+                        <button type="button" data-edit-mode="false"
+                                onclick="doComment(this,'edit_clicked',@item.Id,'#comment_text_@item.Id');">
+                            <span class="bi bi-pencil-square"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs" onclick="doComment(this,'delete_clicked',@item.Id);">
+                            <span class="bi bi-trash3-fill"></span>
+                        </button>
+                    </span>
+                }
+                <div class="col-md-12 d-flex justify-content-end mt-2">
+                    <span class="bi bi-clock btn-xs"></span>@item.ModifiedOn &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="bi bi-person-circle btn-xs"></span>@item.Owner.Username
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+@if (user != null)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group">
+                <input type="text" id="new_comment_text" class="form-control" placeholder="Yorumuz...">
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="button" onclick="doComment(this,'new_clicked',-1);">
+                        <span class="bi bi-send"></span>Gönder
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+}

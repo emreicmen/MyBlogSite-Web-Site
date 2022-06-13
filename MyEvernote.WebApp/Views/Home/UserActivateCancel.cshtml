@@ -1,0 +1,44 @@
+﻿@using MyEvernote.Entites.Messages
+@model List<ErrorMessageObj>
+@{
+    ViewBag.Title = "Geçersiz İşlem....";
+}
+<link href="~/validationSummaryCss.css" rel="stylesheet" />
+<div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="https://www.siberportal.org/wp-content/uploads/2015/04/slider-access-denied.jpg" class="img-responsive" alt="Sample image">
+        </div>
+        <br /><br /><br /><br />
+        <div class="col-md-8 col-lg-6">
+            <form>
+                <div class="form-header">
+                    <h1 class="text-center">Ana sayfaya yönlendiriliyor...</h1><br />
+                </div>
+                <div class="main-content">
+                    <div class="text-danger">
+                        <h1 class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;Geçersiz işlem.......</h1>
+                    </div>
+                </div>
+                <hr />
+                <p class="text-justify">
+                    @foreach (ErrorMessageObj err in Model)
+                        {
+                            @err.Message<br />
+                        }
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("footer").hide();
+        setTimeout(function () {
+            window.location = "/Home/Index";
+        }, 3000);
+    });
+</script>
+
+

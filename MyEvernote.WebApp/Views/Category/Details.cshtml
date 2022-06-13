@@ -1,0 +1,40 @@
+﻿@model MyEvernote.Entites.Category
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="d-flex justify-content-center m-3">
+    <h2>Kategori Detayları</h2>
+</div>
+<link href="~/categoryPagesCss.css" rel="stylesheet" />
+<div class="container d-flex justify-content-center">
+    <div class="card p-3 py-4">
+        <div class="text-center">
+            <h3 class="mt-2">@Html.DisplayFor(model => model.Title)</h3>
+            <span class="mt-1 clearfix">@Html.DisplayFor(model => model.Description)</span>
+
+            <div class="row mt-3 mb-3">
+
+                <div class="col-md-4">
+                    <h6>@Html.DisplayNameFor(model => model.CreatedOn)</h6>
+                    <span class="num">@Html.DisplayFor(model => model.CreatedOn)</span>
+                </div>
+                <div class="col-md-4">
+                    <h6>@Html.DisplayNameFor(model => model.ModifiedOn)</h6>
+                    <span class="num">@Html.DisplayFor(model => model.ModifiedOn)</span>
+                </div>
+                <div class="col-md-4">
+                    <h6>@Html.DisplayNameFor(model => model.ModifiedUsername)</h6>
+                    <span class="num">@Html.DisplayFor(model => model.ModifiedUsername)</span>
+                </div>
+            </div>
+            <hr class="line">
+            <div class="profile mt-5">
+                @Bootstrap.LinkButton("/Category/Edit/" + Model.Id, "warning", string.Empty, string.Empty, "pencil-square", "Edit")
+                @Bootstrap.LinkButton("/Category/Index/", "primary", string.Empty, string.Empty, "arrow-left-circle", "Back to List")
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Kayıt Başarılı";
+}
+
+<div class="col-md-10">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://cdn3.vectorstock.com/i/1000x1000/13/67/confirmed-grunge-stamp-with-tick-vector-23041367.jpg" class="img-thumbnail" alt="Sample image">
+            </div>
+            <br /><br /><br /><br />
+            <div class="col-md-8 col-lg-6">
+                <form>
+                    <div class="form-header">
+                        <h1 class="text-center">Yönlendiriliyor.......</h1><br />
+                    </div>
+                    <div class="main-content">
+                        <div class="text-success d-flex justify-content-center">
+                            <h2><span class="bi bi-hand-thumbs-up-fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;Kayıt Başarılı.......</h2>
+                        </div>
+                        <h2>Lütfen e-posta adresinize gönderdiğimiz aktivasyon linkine tıklayarak hesabınızı aktive ediniz.</h2>
+                        <h3 class="text-danger">Hesabınızı aktive etmeden paylaşım yapamazsınız!!!</h3>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        $("footer").hide();
+        setTimeout(function () {
+            window.location = "/Home/Index";
+        }, 3000);
+    });
+</script>
+

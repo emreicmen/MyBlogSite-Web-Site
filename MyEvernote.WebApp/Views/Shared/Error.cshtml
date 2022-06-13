@@ -1,0 +1,51 @@
+﻿@using MyEvernote.Entites.Messages
+@using MyEvernote.WebApp.ViewModels
+
+@model ErrorViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+<link href="~/validationSummaryCss.css" rel="stylesheet" />
+<div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Error.svg/2198px-Error.svg.png" class="img-responsive" alt="Sample image">
+        </div>
+        <br /><br /><br /><br />
+        <div class="col-md-8 col-lg-6">
+            <form>
+                <div class="form-header">
+                    <h1 class="text-center text-danger">@Model.Header</h1><br />
+                </div>
+                <div class="main-content">
+                    <div class="text-danger">
+                        <h2><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;&nbsp;&nbsp;&nbsp;@Model.Title</h2>
+                    </div>
+                </div>
+                <hr />
+                <p class="text-justify">
+                    @foreach (ErrorMessageObj msg in Model.Items)
+                    {
+                        @msg.Message<br />
+                    }
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+@{
+    string js = string.Empty;
+    if (Model.IsRedirecting)
+    {
+        js = "setTimeout(function () { window.location = '" + Model.RedirectUrl + "'; }," + Model.RedirectingTimeout + ");";
+    }
+}
+<script>
+    $(function () {
+        @Html.Raw(js);
+    });
+</script>
+
+

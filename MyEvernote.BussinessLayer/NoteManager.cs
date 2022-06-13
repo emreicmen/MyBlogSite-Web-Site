@@ -1,0 +1,14 @@
+﻿using MyEvernote.DataAccessLayer.EntityFramework;
+using MyEvernote.Entites;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MyEvernote.BussinessLayer
+{
+    public class NoteManager : ManagerBase<Note>
+    {
+    }
+}

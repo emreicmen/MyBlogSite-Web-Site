@@ -1,0 +1,49 @@
+﻿@using MyEvernote.WebApp.ViewModels
+@model OkViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+<link href="~/Content/login-register.css" rel="stylesheet" />
+<div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="https://cdn3.vectorstock.com/i/1000x1000/13/67/confirmed-grunge-stamp-with-tick-vector-23041367.jpg" class="img-thumbnail">
+        </div>
+        <br /><br /><br /><br />
+        <div class="col-md-8 col-lg-6">
+            <form>
+                <div class="form-header">
+                    <h1 class="text-center text-success">@Model.Header</h1><br />
+                </div>
+                <div class="main-content">
+                    <div class="text-success">
+                        <h2><span class="glyphicon glyphicon-ok-circle"></span>&nbsp;&nbsp;&nbsp;&nbsp;@Model.Title</h2>
+                    </div>
+                </div>
+                <hr />
+                <p class="text-justify">
+                    @foreach (string msg in Model.Items)
+                    {
+                        @msg<br />
+                    }
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+@{
+    string js = string.Empty;
+    if (Model.IsRedirecting)
+    {
+        js = "setTimeout(function () { window.location = '" + Model.RedirectUrl + "'; }," + Model.RedirectingTimeout + ");";
+    }
+}
+<script>
+    $(function () {
+        @Html.Raw(js);
+    });
+</script>
+
+

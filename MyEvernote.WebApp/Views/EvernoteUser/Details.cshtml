@@ -1,0 +1,64 @@
+﻿@model MyEvernote.Entites.EvernoteUser
+
+<link href="~/validationSummaryCss.css" rel="stylesheet" />
+<link href="~/categoryPagesCss.css" rel="stylesheet" />
+
+<div class="d-flex justify-content-center m-3">
+    <h2>Kullanıcı Detayları</h2>
+</div>
+<div class="container d-flex justify-content-center">
+    <div class="card p-3 py-4">
+        <div class="text-center">
+            <h3 class="mt-2">@Html.DisplayFor(model => model.Username)</h3>
+            <span class="mt-1 clearfix">@Html.DisplayFor(model => model.Name)  @Html.DisplayFor(model => model.Surname)</span>
+
+
+            <div class="row mt-3 mb-3">
+                <div class="col-md-6">
+                    <h6>@Html.DisplayNameFor(model => model.Email)</h6>
+                    <span class="num">@Html.DisplayFor(model => model.Email)</span>
+                </div>
+                <div class="col-md-6">
+                    <h6>@Html.DisplayNameFor(model => model.Password)</h6>
+                    <span class="num">@Html.DisplayFor(model => model.Password)</span>
+                </div>
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <div class="col-md-6">
+                    <h6>@Html.DisplayNameFor(model => model.IsAdmin)</h6>
+                    <span class="num">@Html.DisplayFor(model => model.IsAdmin)</span>
+                </div>
+                <div class="col-md-6">
+                    <h6>@Html.DisplayNameFor(model => model.IsActive)</h6>
+                    <span class="num">@Html.DisplayFor(model => model.IsActive)</span>
+                </div>
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <div class="col-md-4">
+                    <h6>@Html.DisplayNameFor(model => model.CreatedOn)</h6>
+                    <span class="num">@Html.DisplayFor(model => model.CreatedOn)</span>
+                </div>
+                <div class="col-md-4">
+                    <h6>@Html.DisplayNameFor(model => model.ModifiedOn)</h6>
+                    <span class="num">@Html.DisplayFor(model => model.ModifiedOn)</span>
+                </div>
+                <div class="col-md-4">
+                    <h6>@Html.DisplayNameFor(model => model.ModifiedUsername)</h6>
+                    <span class="num">@Html.DisplayFor(model => model.ModifiedUsername)</span>
+                </div>
+            </div>
+
+            <hr class="line">
+            <div class="profile mt-5">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Bootstrap.LinkButton("/EvernoteUser/Edit/" + Model.Id, "warning", string.Empty, string.Empty, "pencil-square", "Edit")
+                    @Bootstrap.LinkButton("/EvernoteUser/Index/", "primary", string.Empty, string.Empty, "arrow-left-circle", "Back to List")
+                }
+            </div>
+        </div>
+    </div>
+</div>
